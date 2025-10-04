@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+import "validate/validate.proto";
+
+option java_multiple_files = true;
+option java_package = "com.github.j4c62.pms.property.infrastructure.provider.grpc";
+
+service PropertyService {
+    rpc CreateProperty (CreatePropertyRequest) returns (PropertyResponse);
+    rpc UpdateProperty (UpdatePropertyRequest) returns (PropertyResponse);
+
+}
+
+message CreatePropertyRequest {
+    Data data = 2;
+    string status = 3;
+}
+
+message UpdatePropertyRequest {
+    string id = 1 [(validate.rules).string = {min_len: 3}];
+    Data data = 2;
+    string status = 7;
+}
+
+message Data {
+    string name = 1;
+    string type = 2;
+    Capacity capacity = 3;
+    double size = 4;
+    double ceiling_height = 5;
+    string layout = 6;
+    string isolation = 7;
+    bool private_entrance = 8;
+    int32 window = 9;
+    int32 closed_rooms = 10;
+    int32 floor = 11;
+    int32 accessibility = 12;
+    repeated string facilities = 13;
+    Location location = 14;
+    Price price = 15;
+
+}
+message Location {
+    string name = 1;
+    string type = 2;
+}
+message Capacity {
+    int32 min = 1;
+    int32 max = 2;
+}
+message Price {
+    double amount = 1;
+    string currency = 2;
+}
+
+message PropertyResponse {
+    string id = 1;
+    string status = 2;
+    repeated string errors = 3;
+}
+

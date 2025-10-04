@@ -1,0 +1,10 @@
+{
+	"name": "Java 23 (manual)",
+	"dockerFile": "Dockerfile",
+	"postCreateCommand": "java -version",
+	"mounts": [
+		"source=/run/user/1000/podman/podman.sock,target=/var/run/docker.sock,type=bind"
+	],
+	"remoteUser": "vscode"
+}
+

@@ -1,4 +1,4 @@
-package com.github.j4c62.property;
+package com.github.j4c62.pms.property;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

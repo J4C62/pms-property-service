@@ -1,0 +1,37 @@
+application:
+  property:
+    kafka:
+      store-name: property-events-store
+
+spring:
+  application:
+    name: property-service
+
+  kafka:
+    bootstrap-servers: localhost:9094
+  cloud:
+    stream:
+      bindings:
+        propertyEventSupplier-out-0:
+          destination: property-events
+          contentType: application/json
+          producer:
+            batch:
+              size: 16384
+            linger:
+              ms: 90
+            acks: 1
+
+        processPropertyEvents-in-0:
+          destination: property-events
+          contentType: application/json
+
+    kafka:
+      streams:
+        binder:
+          stateStoreRetry:
+            maxAttempts: 5
+grpc:
+  server:
+    address: 0.0.0.0
+    port: 9091

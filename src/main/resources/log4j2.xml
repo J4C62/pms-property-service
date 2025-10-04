@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <OpenTelemetry name="OpenTelemetryAppender">
+            <JsonLayout compact="true" eventEol="true"/>
+        </OpenTelemetry>
+        <Console name="Console" target="SYSTEM_OUT">
+            <JsonLayout compact="true" eventEol="true"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.github.j4c62.pms.property" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="OpenTelemetryAppender"/>
+        </Logger>
+        <Root level="error">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="OpenTelemetryAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>

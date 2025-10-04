@@ -1,1 +1,2 @@
 rootProject.name = 'pms-property-service'
+include 'annotation-proccesor'
